@@ -5,8 +5,6 @@ var mongoose = require('mongoose');
 var usersRouter = require('./routes/users');
 
 var path = require('path');
-const { send } = require('process');
-const exp = require('constants');
 
 mongoose.connect('mongodb://localhost/user-dairy', (err) => {
   console.log(err ? err : console.log('mongoose is connected'));
@@ -14,7 +12,7 @@ mongoose.connect('mongodb://localhost/user-dairy', (err) => {
 
 var app = express();
 
-app.set('view engine', 'views');
+app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname, 'views'));
 
