@@ -31,6 +31,21 @@ router.post('/', (req, res) => {
   });
 });
 
-router.get('/users/:userId/edit', (req, res, next) => {});
+router.get('/:id/edit', (req, res, next) => {
+  var id = req.params.id;
+  User.findById(id, (err, user) => {
+    if (err) return next(err);
+    res.render('editUser.ejs', { user });
+  });
+});
+
+router.post('/:id', (req, res, next) => {
+  var id = req.params.id;
+
+  User.findByIdAndUpdate(id, req.body, (err, updatedUser) => {
+    if (err) return next(err);
+    res.redirect('/users');
+  });
+});
 
 module.exports = router;
