@@ -4,9 +4,8 @@ var router = express.Router();
 
 var User = require('../models/user');
 
-router.get('/', (req, res, next) => {
+router.put('/', (req, res, next) => {
   User.find({}, (err, users) => {
-    console.log(users);
     if (err) return next(err);
     res.render('users.ejs', { users: users });
   });
@@ -30,7 +29,7 @@ router.get('/:id', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   var id = req.params.id;
-  console.log(req.body);
+  // console.log(req.body);
 
   User.findByIdAndUpdate(id, req.body, { new: true }, (err, user) => {
     if (err) return next(err);
