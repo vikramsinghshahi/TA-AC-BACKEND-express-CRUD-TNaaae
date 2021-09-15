@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 
 var path = require('path');
 
+var morgan = require('morgan');
+
 var usersRouter = require('./routes/users');
 
 mongoose.connect('mongodb://localhost/user-dairy-2', (err) => {
@@ -18,6 +20,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
+
+app.use(morgan('dev'));
 
 app.use('/users', usersRouter);
 
