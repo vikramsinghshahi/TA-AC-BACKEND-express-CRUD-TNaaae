@@ -50,22 +50,23 @@ router.get('/:id/edit', (req, res, next) => {
   });
 });
 
-// router.post('/:id', (req, res, next) => {
-//   var id = req.params.id;
+router.post('/:id', (req, res, next) => {
+  var id = req.params.id;
 
-//   User.findByIdAndUpdate(id, req.body, (err, updatedUser) => {
-//     if (err) return next(err);
-//     res.redirect('/users');
-//   });
-// });
+  User.findByIdAndUpdate(id, req.body, (err, updatedUser) => {
+    if (err) return next(err);
+    res.redirect('/users');
+  });
+});
 
-// router.delete('/:id/delete', (req, res, next) => {
-//   var id = req.params.id;
+router.get('/:id/delete', (req, res, next) => {
+  var id = req.params.id;
 
-//   User.findByIdAndDelete(id, (err, userDelted) => {
-//     if (err) return next(err);
-//     res.redirect('/users');
-//   });
-// });
+  User.findByIdAndDelete(id, (err, userDelted) => {
+    console.log(userDelted);
+    if (err) return next(err);
+    res.redirect('/users');
+  });
+});
 
 module.exports = router;
