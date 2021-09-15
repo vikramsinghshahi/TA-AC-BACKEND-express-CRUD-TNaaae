@@ -8,6 +8,7 @@ var userSchema = new Schema(
     email: String,
     age: String,
     bio: String,
+    address: String,
     hobbies: [String],
   },
   { timestamps: true }

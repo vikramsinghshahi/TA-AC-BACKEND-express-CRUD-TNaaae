@@ -1,6 +1,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
 
+var logger = require('morgan');
+
 var path = require('path');
 
 var usersRouter = require('./routes/users');
@@ -18,6 +20,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
+
+app.use(logger('dev'));
 
 app.use('/users', usersRouter);
 

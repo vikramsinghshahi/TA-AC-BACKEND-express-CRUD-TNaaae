@@ -7,7 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-    <form method="POST" action="/users/<%= user_id%>">
+    <form method="POST" action="/users/<%= user._id%>">
       <input
         type="text"
         placeholder="name"
@@ -18,13 +18,13 @@
         type="text"
         placeholder="email"
         name="email"
-        value="<%= user.name %>"
+        value="<%= user.email %>"
       />
       <input
         type="number"
         placeholder="age"
         name="age"
-        value="<%= user.number %>"
+        value="<%= user.age %>"
       />
       <input type="text" placeholder="bio" name="bio" value="<%= user.bio %>" />
       <input
