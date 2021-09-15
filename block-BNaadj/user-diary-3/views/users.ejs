@@ -9,8 +9,9 @@
   <body>
     <h1>This is the web page for all the users list</h1>
     <% users.forEach((user)=>{ %>
-    <h2><%= user.name %></h2>
-    <a herf=""><%= user.bio %> </a>
+    <a href="/users/<%= user._id %>"><%= user.name %></a>
+    <h3><%= user.bio %></h3>
+
     <% }) %>
   </body>
 </html>

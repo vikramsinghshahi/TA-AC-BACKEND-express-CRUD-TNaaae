@@ -16,6 +16,13 @@ router.get('/new', (req, res) => {
   res.render('userForm.ejs');
 });
 
+router.post('/', (req, res, next) => {
+  User.create(req.body, (err, users) => {
+    if (err) return next(err);
+    res.redirect('/users');
+  });
+});
+
 // router.post('/', (req, res, next) => {});
 // router.post('/', (req, res, next) => {
 //   User.create(req.body, (err, users) => {
@@ -24,27 +31,35 @@ router.get('/new', (req, res) => {
 //   });
 // });
 
-// router.get('/:id', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
+  var id = req.params.id;
+
+  User.findById(id, (err, user) => {
+    if (err) return next(err);
+    res.render('singleUser.ejs', { user });
+  });
+});
+
+router.get('/:id/edit', (req, res, next) => {
+  var id = req.params.id;
+  console.log(req.body);
+
+  User.findById(id, (err, user) => {
+    if (err) return next(err);
+    res.render('editUser.ejs', { user });
+  });
+});
+
+// router.post('/:id', (req, res, next) => {
 //   var id = req.params.id;
 
-//   User.findById(id, (err, user) => {
+//   User.findByIdAndUpdate(id, req.body, (err, updatedUser) => {
 //     if (err) return next(err);
-//     res.render('singleUser.ejs', { user });
-//   });
-// });
-
-// router.put('/:id', (req, res, next) => {
-//   var id = req.params.id;
-//   console.log(req.body);
-
-//   User.findByIdAndUpdate(id, req.body, { new: true }, (err, user) => {
-//     if (err) return next(err);
-//     console.log(user);
 //     res.redirect('/users');
 //   });
 // });
 
-// router.delete('/:id', (req, res, next) => {
+// router.delete('/:id/delete', (req, res, next) => {
 //   var id = req.params.id;
 
 //   User.findByIdAndDelete(id, (err, userDelted) => {
